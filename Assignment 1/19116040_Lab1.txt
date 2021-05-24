@@ -1,0 +1,12 @@
+Md Junaid Mahmood
+19116040
+sixtrack.eio.gz
+4096
+DefaultL2MissRate 0.1439
+BaselineIPC 1.4540
+slowL1IPC 1.4213
+slowL2IPC 1.4487
+RandomMissRate 0.1536
+FIFOMissRate 0.1439
+InOrderIPC 0.7944
+DiffWidthIPC 1.4750
