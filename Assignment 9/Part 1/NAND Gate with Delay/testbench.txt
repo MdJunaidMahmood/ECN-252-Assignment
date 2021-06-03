@@ -1,0 +1,28 @@
+-- Code your testbench here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+ENTITY my_tb IS
+END my_tb;
+
+ARCHITECTURE my_tb_arch OF my_tb IS
+
+	COMPONENT full_adder
+		PORT (a,b, c_in: in std_logic;
+			s, c_out: out std_logic;
+    		);
+	END COMPONENT;
+    
+	SIGNAL a,b,c_in:std_logic;
+    	SIGNAL s, c_out:std_logic; 
+    
+	BEGIN
+    	full_adder_instance: full_adder PORT MAP(a,b, c_in, s, c_out);
+        
+    	PROCESS BEGIN
+    		WAIT FOR 0 NS; a <= '0'; b <= '0'; c_in <= '0';
+    		WAIT FOR 10 NS; a <= '1'; b <= '0'; c_in <= '1';
+        	WAIT;
+    	END PROCESS;
+        
+END ARCHITECTURE my_tb_arch;

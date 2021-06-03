@@ -1,0 +1,35 @@
+// Code your design here
+module tff(clk, set, reset, t, q, qb);
+  input clk;
+  input set;
+  input reset;
+  input t;
+  
+  output q;
+  output qb;
+  
+  reg q;
+  assign qb = ~q;
+  
+  always @(posedge clk or posedge set or posedge reset) begin
+      if (set) begin
+        if (clk) begin
+          q <= 1'b1;
+        end else begin
+          q <= q;
+        end
+      end else if (reset) begin
+        if (clk) begin
+          q <= 1'b0;
+        end else begin
+          q <= q;
+        end 
+      end else begin
+        if (t) begin
+          q <= ~q;
+        end else begin
+          q <= q;
+        end
+      end
+    end
+endmodule

@@ -1,0 +1,27 @@
+// Code your testbench here
+// or browse Examples
+module main();
+  reg [3:0] ta, tb;
+  wire [7:0] r;
+  
+  fourbitmultiplier dut(.a(ta), .b(tb), .result(r));
+  
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+  end
+  
+  initial begin
+    ta = 15;
+    tb = 11;
+    #5
+    ta = 12;
+    tb = 11;
+    #5
+    ta = 5;
+    tb = 9;
+    #5
+    
+    $finish();
+  end
+endmodule

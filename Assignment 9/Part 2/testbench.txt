@@ -1,0 +1,28 @@
+-- Code your testbench here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity down_count_tb is
+end entity;
+
+architecture down_count_tb_arch of down_count_tb is
+component down_count is
+Port (clk,set,enable : in STD_LOGIC;
+	count : out STD_LOGIC_VECTOR (1 downto 0));
+end component;
+
+signal clk, set, enable: std_logic :='0';
+signal count: STD_LOGIC_VECTOR(1 downto 0);
+
+BEGIN
+	blk_down_counter: down_count PORT MAP (clk, set, enable, count);
+    
+   	set <= '1' AFTER 7 NS, '0' AFTER 9 NS, '1' AFTER 62 NS, '0' AFTER 76 NS;
+	clk <= NOT clk AFTER 5 NS WHEN NOW<=90 NS ELSE '0';
+    
+    	PROCESS BEGIN
+    		wait for 6 ns; enable <= '1';
+    		wait for 52 ns; enable <='0';
+    		wait for 20 ns; enable <= '1';
+    	END PROCESS;
+END ARCHITECTURE;

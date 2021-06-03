@@ -1,0 +1,32 @@
+-- Code your design here
+-- Down Counter Description
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.NUMERIC_STD_UNSIGNED.all;
+
+entity down_count is
+    Port(clk,set,enable : in  STD_LOGIC;
+           count : out  STD_LOGIC_VECTOR (1 downto 0));
+end entity down_count;
+
+architecture down_count_arch of down_count is
+
+signal temp:std_logic_vector(1 downto 0);
+begin
+process(clk,set,enable)
+begin
+if(enable = '1')then
+  	if(set = '1')then
+      	temp <= "11";
+  	elsif(rising_edge(clk))then
+		if(temp = "00")then
+        	temp <= "11";
+        else
+      		temp <= temp - 1;
+		end if;
+  	end if;
+end if;
+end process;
+
+count<=temp;
+end architecture down_count_arch;

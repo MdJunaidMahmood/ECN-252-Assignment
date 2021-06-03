@@ -1,0 +1,50 @@
+-- Code your design here
+-- Simple NAND gate design
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity nand_gate is
+port(
+  a: in std_logic;
+  b: in std_logic;
+  y: out std_logic);
+end nand_gate;
+
+architecture nand_arch of nand_gate is
+begin
+	process(a, b)
+    	begin
+    	if a='1' and b='1' then
+        	y <= '0' after 1 ns;
+    	else 
+		y <= '1' after 1 ns;
+    	end if;
+    	end process;
+end nand_arch;
+
+
+--Simple full adder design
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity full_adder is
+Port (a,b, c_in: in std_logic;
+	s, c_out: out std_logic;
+        );
+end full_adder;
+
+architecture full_adder_arch of full_adder is
+component nand_gate PORT (a,b: in std_logic; y: out std_logic); END COMPONENT;
+
+signal temp1, temp2, temp3, temp4, temp5, temp6, temp7: std_logic;
+
+begin
+	dev1:nand_gate PORT MAP (a,b,temp1);
+	dev2:nand_gate PORT MAP (a,temp1,temp2);
+	dev3:nand_gate PORT MAP (temp1,b,temp3);
+	dev4:nand_gate PORT MAP (temp2,temp3,temp4);
+	dev5:nand_gate PORT MAP (temp4,c_in,temp5);
+	dev6:nand_gate PORT MAP (temp4,temp5,temp6);
+	dev7:nand_gate PORT MAP (temp5,c_in,temp7);
+	dev8:nand_gate PORT MAP (temp6,temp7,s);
+	dev9:nand_gate PORT MAP (temp1,temp5,c_out);
+end architecture;

@@ -1,0 +1,8 @@
+// Code your design here
+module fourbitmultiplier(a, b, result);
+  input [3:0] a, b;
+  output [7:0] result;
+  
+  assign result = a*b;
+  
+endmodule 
